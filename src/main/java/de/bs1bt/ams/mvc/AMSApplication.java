@@ -11,7 +11,7 @@ public class AMSApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AMSApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 480);
         stage.setTitle("BS1 BT - Asset Management System");
         stage.setScene(scene);
 

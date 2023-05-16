@@ -26,6 +26,8 @@ public class Raum {
     private double laengeInCm;
     private int garantieInMonaten;
 
+    //private Gebaeude gebaeude;
+
     public Raum() {
         //zustand = 1; // Don't use magic numbers => "lieber Konstanten verwenden"
         breiteInCm = 100;
@@ -118,7 +120,7 @@ public class Raum {
      * @return
      */
     public double getFlaecheInQm() {
-        double flaeche = laengeInCm * breiteInCm;
+        double flaeche = laengeInCm * breiteInCm / 10000;
         return flaeche;
     }
 
@@ -145,5 +147,18 @@ public class Raum {
         } else {
             System.out.println("Zustandswechsel nicht erlaubt");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Raum{" +
+                "zustand=" + zustand +
+                ", id=" + id +
+                ", bezeichnung='" + bezeichnung + '\'' +
+                ", gebaeude='" + gebaeude + '\'' +
+                ", breiteInCm=" + breiteInCm +
+                ", laengeInCm=" + laengeInCm +
+                ", garantieInMonaten=" + garantieInMonaten +
+                '}';
     }
 }

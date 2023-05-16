@@ -1,10 +1,15 @@
 package de.bs1bt.ams.model;
 
+import java.util.ArrayList;
+
 public class Gebaeude {
     private int gebaeudenummer;
     private String bezeichnung;
     private int stockwerke;
     private String beschreibung;
+
+    // Neuer Datentyp ArrayListRaum wird zur Kompilierzeit erzeugt
+    private ArrayList<Raum> raumListe = new ArrayList<Raum>();
 
     public Gebaeude(String bezeichnung, int stockwerke, String beschreibung)
     {
@@ -50,5 +55,36 @@ public class Gebaeude {
 
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
+    }
+
+    public ArrayList<Raum> getRaumListe() {
+        return raumListe;
+    }
+
+    public void setRaumListe(ArrayList<Raum> raumListe) {
+        this.raumListe = raumListe;
+    }
+
+    public double gesamtflaeche() {
+        double gesamtflaeche = 0.0;
+        for(int i=0; i<raumListe.size(); i++) {
+            gesamtflaeche += raumListe.get(i).getFlaecheInQm();
+        }
+        return gesamtflaeche;
+    }
+
+    @Override
+    public String toString() {
+        String tmp = super.toString();
+
+        tmp += "\nGebäude: " + getBezeichnung();
+        tmp += "\nGesamtfläche: " + gesamtflaeche() + " qm";
+        tmp += "\n[\n";
+        for(Raum r: raumListe) {
+            tmp += "\t" + r.toString();
+            tmp += "\n";
+        }
+        tmp += "\n]";
+        return tmp;
     }
 }

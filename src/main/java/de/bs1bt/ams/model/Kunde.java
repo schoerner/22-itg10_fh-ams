@@ -4,11 +4,14 @@ import java.time.LocalDate;
 
 public class Kunde extends Person {
 
+    // Gemeinsame Variable für alle Kunden-Objekte
+    private static int anzahlKunden = 0;
     private int kundennummer;
     private boolean hatAGBZugestimmt;
 
     public Kunde() {
         super();
+        initialisiere();
     }
 
     public Kunde(String vorname,
@@ -19,16 +22,17 @@ public class Kunde extends Person {
                  boolean hatAGBZugestimmt
     ) {
         super(vorname, name, geburtsdatum, geschlecht);
-        setKundennummer(kundennummer);
         setHatAGBZugestimmt(hatAGBZugestimmt);
+        initialisiere();
+    }
+
+    private void initialisiere() {
+        anzahlKunden++;
+        kundennummer = anzahlKunden;
     }
 
     public int getKundennummer() {
         return kundennummer;
-    }
-
-    public void setKundennummer(int kundennummer) {
-        this.kundennummer = kundennummer;
     }
 
     public boolean isHatAGBZugestimmt() {
@@ -37,5 +41,13 @@ public class Kunde extends Person {
 
     public void setHatAGBZugestimmt(boolean hatAGBZugestimmt) {
         this.hatAGBZugestimmt = hatAGBZugestimmt;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Kunde{" +
+                "kundennummer=" + kundennummer +
+                ", hatAGBZugestimmt=" + hatAGBZugestimmt +
+                '}';
     }
 }

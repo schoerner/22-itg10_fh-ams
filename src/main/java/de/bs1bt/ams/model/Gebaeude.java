@@ -1,6 +1,7 @@
 package de.bs1bt.ams.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Gebaeude {
     private int gebaeudenummer;
@@ -8,9 +9,11 @@ public class Gebaeude {
     private int stockwerke;
     private String beschreibung;
 
-    // Neuer Datentyp ArrayListRaum wird zur Kompilierzeit erzeugt
+    // Neuer Datentyp "ArrayListRaum" wird zur Kompilierzeit erzeugt
     private ArrayList<Raum> raumListe = new ArrayList<Raum>();
 
+    public Gebaeude() {
+    }
     public Gebaeude(String bezeichnung, int stockwerke, String beschreibung)
     {
         setGebaeudenummer(-1);
@@ -61,10 +64,6 @@ public class Gebaeude {
         return raumListe;
     }
 
-    public void setRaumListe(ArrayList<Raum> raumListe) {
-        this.raumListe = raumListe;
-    }
-
     public double gesamtflaeche() {
         double gesamtflaeche = 0.0;
         for(int i=0; i<raumListe.size(); i++) {
@@ -73,8 +72,10 @@ public class Gebaeude {
         return gesamtflaeche;
     }
 
+    // Override: toString() überschreibt die Methode der Basiskklasse "Object"
     @Override
     public String toString() {
+        // Mit super ruft man die Methode der Oberklasse auf:
         String tmp = super.toString();
 
         tmp += "\nGebäude: " + getBezeichnung();
@@ -87,4 +88,5 @@ public class Gebaeude {
         tmp += "\n]";
         return tmp;
     }
+
 }

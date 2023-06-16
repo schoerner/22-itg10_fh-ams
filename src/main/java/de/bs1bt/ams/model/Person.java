@@ -6,7 +6,7 @@ public class Person {
 
     private String name;
     private String vorname;
-    private LocalDate gebDat;
+    private LocalDate geburtsDatum;
     private String geschlecht;
 
 
@@ -14,9 +14,9 @@ public class Person {
     }
 
     public Person(String vorn, String n, LocalDate gD, String g) {
-        setName(n); // Verwende die Methode der Basisklasse
+        setNachname(n); // Verwende die Methode der Basisklasse
         setVorname(vorn);
-        setGebDat(gD);
+        setGeburtsDatum(gD);
         setGeschlecht(g);
     }
 
@@ -24,8 +24,8 @@ public class Person {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNachname(String nachname) {
+        this.name = nachname;
     }
 
     public String getVorname() {
@@ -36,12 +36,12 @@ public class Person {
         this.vorname = vorname;
     }
 
-    public LocalDate getGebDat() {
-        return gebDat;
+    public LocalDate getGeburtsDatum() {
+        return geburtsDatum;
     }
 
-    public void setGebDat(LocalDate gebDat) {
-        this.gebDat = gebDat;
+    public void setGeburtsDatum(LocalDate geburtsDatum) {
+        this.geburtsDatum = geburtsDatum;
     }
 
     public String getGeschlecht() {
@@ -63,11 +63,11 @@ int i = Integer.parseInt(s);
 return i;
 } */
     public int getAlter() {
-        return gebDat.until(LocalDate.now()).getYears();
+        return geburtsDatum.until(LocalDate.now()).getYears();
     }
 
     public boolean hatRundenGeb() {
-        return (gebDat.getYear() - LocalDate.now().getYear()) % 10 == 0;
+        return (geburtsDatum.getYear() - LocalDate.now().getYear()) % 10 == 0;
     }
 
     @Override

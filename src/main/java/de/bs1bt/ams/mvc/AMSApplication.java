@@ -1,5 +1,7 @@
 package de.bs1bt.ams.mvc;
 
+import de.bs1bt.ams.gateways.RaumMySQLDataGateway;
+import de.bs1bt.ams.gateways.RaumRAMDataGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +18,13 @@ public class AMSApplication extends Application {
         stage.setScene(scene);
 
         MainController mc = fxmlLoader.getController();
+        // Aufgabe
+        // 1) Alle new für RaumMySQLDataGateway in
+        //    MainController entfernen
+        // 2) RaumRAMDataGateway implementieren
+        // 3) Testen ;-)
+        //mc.setDao(new RaumMySQLDataGateway());
+        mc.setDao(new RaumRAMDataGateway());
         mc.zeigeRaeumeInTabelle();
         mc.zeigeGesamtflaeche();
 

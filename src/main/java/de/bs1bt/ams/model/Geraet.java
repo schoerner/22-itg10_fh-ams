@@ -19,11 +19,18 @@ public class Geraet {
     public int inventarnummer;
     private static int anzahlGeraete;// = 0;
 
+    // has-a - Beziehung:
+    // Gerät ist in einem Raum:
+    private Raum istInRaum;
+
     public Geraet() {
         anzahlGeraete = anzahlGeraete+1;
         inventarnummer = anzahlGeraete;
     }
 
+    public Raum istInRaum() {
+        return istInRaum;
+    }
     public static int getAnzahlGeraete() {
         // Das geht nicht:
         // System.out.println("invantarnr.:" + inventarnummer);
@@ -119,22 +126,23 @@ public class Geraet {
         this.inventarnummer = inventarnummer;
     }
 
-    // Sonstige Methoden
+    //Sonstige Methoden
+    @Override
     public String toString() {
-        String tmp = "";
+        String tmp = super.toString();
         tmp += getClass().getName();
         tmp += "[";
-        tmp += "raum: " + raum + ", \r\n";
-        tmp += "\tseriennummer: " + seriennummer;
-        tmp += ",\n\tkaufpreis: " + kaufpreis;
-        tmp += ", \nkaufdatum: " + kaufdatum;
-        tmp += ", defekt: " + defekt;
-        tmp += ", modell: " + modell;
-        tmp += ", hersteller: " + hersteller;
-        tmp += ", garantieInM: " + garantieInM;
-        tmp += ", inventarnummer: " + inventarnummer;
-        tmp += "]";
+        tmp += "Raum: "+ raum;
+        tmp += " | Seriennummer: "+ seriennummer;
+        tmp += " | Kaufdatum: "+ kaufdatum;
+        tmp += " | Modell: "+ modell;
+        tmp += " | Hersteller: "+ hersteller;
+        tmp += " | Defekt: " + defekt;
+        tmp += " | Garantie in Monaten: " + garantieInM;
+        tmp += " | Kaufpreis: " + kaufpreis + "€";
+        tmp += " | Inventarnummer: " + inventarnummer;
         return tmp;
     }
+
 
 }

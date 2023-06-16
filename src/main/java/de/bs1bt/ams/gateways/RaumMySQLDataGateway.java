@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RaumMySQLDataGateway {
+public class RaumMySQLDataGateway implements DAOInterface {
     private Connection connection = null;
     private PreparedStatement ptmt = null;
     private ResultSet resultSet = null;
@@ -61,6 +61,7 @@ public class RaumMySQLDataGateway {
                     throw new DataGatewayException("Der Datensatz ist nicht einzigartig.");
                 }
 
+                // ORM: Objekt-relationales Mapping
                 raum = new Raum( resultSet.getInt("raum_id"),
                         resultSet.getString("bezeichnung"),
                         resultSet.getString("gebaeude"),

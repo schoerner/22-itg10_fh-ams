@@ -1,5 +1,7 @@
 package de.bs1bt.ams.model;
 
+import java.util.ArrayList;
+
 public class Raum {
     /*
     private final int FREI = 1;
@@ -27,6 +29,15 @@ public class Raum {
     private int garantieInMonaten;
 
     //private Gebaeude gebaeude;
+
+    // has-a - Beziehung: Ein Raum kann mehrere Geräte haben
+    // Array List
+    private ArrayList<Geraet> Geraeteliste = new ArrayList<Geraet>();
+
+    public ArrayList<Geraet> getGeraeteliste() {
+        return Geraeteliste;
+    }
+
 
     public Raum() {
         //zustand = 1; // Don't use magic numbers => "lieber Konstanten verwenden"
@@ -151,14 +162,20 @@ public class Raum {
 
     @Override
     public String toString() {
-        return "Raum{" +
-                "zustand=" + zustand +
-                ", id=" + id +
-                ", bezeichnung='" + bezeichnung + '\'' +
-                ", gebaeude='" + gebaeude + '\'' +
-                ", breiteInCm=" + breiteInCm +
-                ", laengeInCm=" + laengeInCm +
-                ", garantieInMonaten=" + garantieInMonaten +
-                '}';
+        String tmp = super.toString();
+        tmp += getClass().getName();
+        tmp += "[";
+        tmp += "ID: "+ getId() + " | ";
+        tmp += "Bezeichnung: "+ getBezeichnung() + " | ";
+        tmp += "Gebäude: "+ getGebaeude() + " | ";
+        tmp += "Fläche: "+ getFlaecheInQm() + " m^2 | ";
+
+        //tmp += "Geräteliste: "+ getGeraeteliste() + " ]";
+        // oder alternativ mit for-Schleife über alle Elemente der Liste iterieren:
+        for(int i=0; i< getGeraeteliste().size(); i++) {
+            tmp += getGeraeteliste().get(i).toString();
+        }
+
+        return tmp;
     }
 }

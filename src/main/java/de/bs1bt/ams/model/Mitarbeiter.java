@@ -33,7 +33,7 @@ public class Mitarbeiter extends Person {
         return personalnummer;
     }
 
-    private void setPersonalnummer(int personalnummer) { this.personalnummer = personalnummer; }
+    public void setPersonalnummer(int personalnummer) { this.personalnummer = personalnummer; }
 
     public double getGehalt() {
         return gehalt;

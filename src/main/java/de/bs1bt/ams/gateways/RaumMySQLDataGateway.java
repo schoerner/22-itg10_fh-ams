@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RaumMySQLDataGateway implements DAOInterface {
+public class RaumMySQLDataGateway implements InterfaceRaumDAO {
     private Connection connection = null;
     private PreparedStatement ptmt = null;
     private ResultSet resultSet = null;

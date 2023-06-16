@@ -3,12 +3,9 @@ package de.bs1bt.ams.gateways;
 import de.bs1bt.ams.model.Raum;
 
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Optional;
 
-public class RaumRAMDataGateway implements DAOInterface {
+public class RaumRAMDataGateway implements InterfaceRaumDAO {
     // ArrayList, die Räume im RAM hält
     private ArrayList<Raum> RaumListe = new ArrayList();
 

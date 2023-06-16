@@ -1,6 +1,7 @@
 package de.bs1bt.ams.mvc;
 
-import de.bs1bt.ams.gateways.RaumMySQLDataGateway;
+import de.bs1bt.ams.gateways.GeraetRAMDAO;
+import de.bs1bt.ams.gateways.MitarbeiterRAMDAO;
 import de.bs1bt.ams.gateways.RaumRAMDataGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,11 @@ public class AMSApplication extends Application {
         // 2) RaumRAMDataGateway implementieren
         // 3) Testen ;-)
         //mc.setDao(new RaumMySQLDataGateway());
-        mc.setDao(new RaumRAMDataGateway());
+
+        mc.setRaumDao(new RaumRAMDataGateway());
+        mc.setMitarbeiterDAO(new MitarbeiterRAMDAO());
+        mc.setGeraeteDAO(new GeraetRAMDAO());
+
         mc.zeigeRaeumeInTabelle();
         mc.zeigeGesamtflaeche();
 

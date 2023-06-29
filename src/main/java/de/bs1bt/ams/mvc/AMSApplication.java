@@ -1,8 +1,9 @@
 package de.bs1bt.ams.mvc;
 
-import de.bs1bt.ams.gateways.GeraetRAMDAO;
-import de.bs1bt.ams.gateways.MitarbeiterRAMDAO;
-import de.bs1bt.ams.gateways.RaumRAMDataGateway;
+import de.bs1bt.ams.factories.AbstractDAOFactory;
+import de.bs1bt.ams.factories.MySQLDAOFactory;
+import de.bs1bt.ams.factories.RAMDAOFactory;
+import de.bs1bt.ams.gateways.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +19,27 @@ public class AMSApplication extends Application {
         stage.setTitle("BS1 BT - Asset Management System");
         stage.setScene(scene);
 
+        AbstractDAOFactory daoFactory;
+        // AA 3: Fabrikmethode für Erzeugung der AbstractFactory
+        String type = "MySQL";
+        if(type == "RAM") {
+            // AA 2: Implementierung der Abstrakten Fabrik
+            daoFactory = new RAMDAOFactory();
+        } else {
+            daoFactory = new MySQLDAOFactory();
+        }
+        /* ORM: Objekt-relationales Mapping
+         * DAO: Data Access Objekt- Pattern
+         * Fabric
+         * Table Data Gateway - Pattern
+         */
+        InterfaceGeraeteDAO geraeteDAO = daoFactory.createGeraeteDAO();
+        InterfaceRaumDAO raumDAO = daoFactory.createRaumDAO();
+
         MainController mc = fxmlLoader.getController();
+        mc.setRaumDao(raumDAO);
+        mc.setGeraeteDAO(geraeteDAO);
+
         // Aufgabe
         // 1) Alle new für RaumMySQLDataGateway in
         //    MainController entfernen
@@ -26,10 +47,13 @@ public class AMSApplication extends Application {
         // 3) Testen ;-)
         //mc.setDao(new RaumMySQLDataGateway());
 
-        mc.setRaumDao(new RaumRAMDataGateway());
+        // TODO Einstieg in Abstrakte Klassen, Entwurfsmuster und Abstrakte Fabriken
+/*
         mc.setMitarbeiterDAO(new MitarbeiterRAMDAO());
-        mc.setGeraeteDAO(new GeraetRAMDAO());
-
+        mc.setGebaeudeDao(new RaumRAMDataGateway());
+        mc.setKundenDAO(new MitarbeiterRAMDAO());
+        mc.setNetzwerkGeraeteDAO(new GeraetRAMDAO());
+*/
         mc.zeigeRaeumeInTabelle();
         mc.zeigeGesamtflaeche();
 

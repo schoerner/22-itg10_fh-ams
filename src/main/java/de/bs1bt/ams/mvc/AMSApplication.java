@@ -1,6 +1,7 @@
 package de.bs1bt.ams.mvc;
 
 import de.bs1bt.ams.factories.AbstractDAOFactory;
+import de.bs1bt.ams.factories.AbstractDAOFactoryFactory;
 import de.bs1bt.ams.factories.MySQLDAOFactory;
 import de.bs1bt.ams.factories.RAMDAOFactory;
 import de.bs1bt.ams.gateways.*;
@@ -19,20 +20,10 @@ public class AMSApplication extends Application {
         stage.setTitle("BS1 BT - Asset Management System");
         stage.setScene(scene);
 
-        AbstractDAOFactory daoFactory;
-        // AA 3: Fabrikmethode für Erzeugung der AbstractFactory
-        String type = "MySQL";
-        if(type == "RAM") {
-            // AA 2: Implementierung der Abstrakten Fabrik
-            daoFactory = new RAMDAOFactory();
-        } else {
-            daoFactory = new MySQLDAOFactory();
-        }
-        /* ORM: Objekt-relationales Mapping
-         * DAO: Data Access Objekt- Pattern
-         * Fabric
-         * Table Data Gateway - Pattern
-         */
+        // Factory-Method für die Factory
+        AbstractDAOFactory daoFactory = AbstractDAOFactoryFactory.create(
+                AbstractDAOFactoryFactory.Types.MYSQL
+            );
         InterfaceGeraeteDAO geraeteDAO = daoFactory.createGeraeteDAO();
         InterfaceRaumDAO raumDAO = daoFactory.createRaumDAO();
 
